@@ -2,7 +2,7 @@
 // Document ready.
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro_form');
-  var submitBtn = $('#form-submit-btn');
+  var submitBtn = $('#form-signup-btn');
   
   // Set Stripe public key.
   Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content') );
@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function(){
     var ccNum = $('#card_number').val(),
         cvcNum = $('#card_code').val(),
         expMonth = $('#card_month').val(),
-        expYear = $('#car_year').val();
+        expYear = $('#card_year').val();
         
     // Use Stripe JS library to check for card errors.
     var error = false;
@@ -25,19 +25,19 @@ $(document).on('turbolinks:load', function(){
     // Validate card number.
     if (!Stripe.card.validateCardNumber(ccNum)) {
       error = true;
-      alert('The credit card number appears to be inalid');
+      alert('The credit card number appears to be invalid');
     }
     
     // Validate CVC number.
     if (!Stripe.card.validateCVC(cvcNum)) {
       error = true;
-      alert('The CVC number appears to be inalid');
+      alert('The CVC number appears to be invalid');
     }
     
     // Validate expiration date.
     if (!Stripe.card.validateExpiry(expMonth, expYear)) {
       error = true;
-      alert('The expiration date appears to be inalid');
+      alert('The expiration date appears to be invalid');
     }
     
     if (error) {
@@ -52,13 +52,12 @@ $(document).on('turbolinks:load', function(){
         exp_year: expYear
       }, stripeResponseHandler);
     }
-    
     return false;
   });
   
   // Stripe will return a card token.
   function stripeResponseHandler(status, response) {
-    // Get the token fromthe reponse
+    // Get the token from the reponse
     var token = response.id
     
     // Inject the card token in a hidden field.
