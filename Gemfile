@@ -47,7 +47,7 @@ gem 'figaro', '1.1.1'
 gem 'paperclip', '4.3.6'
 
 # Use AWS SDK for cloud storage
-gem 'aws-sdk', '2.3'
+gem 'aws-sdk', '< 2.0'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
