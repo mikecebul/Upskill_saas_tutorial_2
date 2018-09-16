@@ -1,6 +1,11 @@
 <div class="home-callout text-center container-fluid">
   <h1>Welcome to DevMatch</h1>
-  <h3>A membership site where entrepreneurs can meet developers.</h3>
+  <h3>A membership site where entrepreneurs can meet developers.</h3><br/>
+  <% if !user_signed_in? %>
+    <%= link_to "SignUp Today!", root_path(:anchor => 'signup-today'), class: 'btn btn-default btn-md btn-success' %>
+  <% else %>
+    <%= link_to "Take part in the community!", root_path(:anchor => 'your-profile'), class: 'btn btn-default btn-md btn-success' %>
+  <% end %>
 </div>
 
 <div class="container home-signup-links">
@@ -8,14 +13,14 @@
     <% if user_signed_in? %>
       <div class="col-md-6">
         <div class="well text-center signed-in-well">
-          <h2>Your Profile</h2>
+          <h2 id="your-profile">Your Profile</h2>
           <% if current_user.profile %>
             <%= link_to "View your Profile", user_path(id: current_user.id), class: 'btn btn-default btn-lg btn-block btn-primary' %>
             <%= link_to "Edit your Profile", edit_user_profile_path(user_id: current_user.id), class: 'btn btn-default btn-lg btn-block btn-info' %>
 
           <% else %>
             <p>Create your profile so you can share your information with the community.</p>
-            <%= link_to "Create your Profile", new_user_profile_path(user_id: current_user.id), class: 'btn btn-default btn-lg btn-block' %>
+            <%= link_to "Create your Profile", new_user_profile_path(user_id: current_user.id), class: 'btn btn-default btn-lg btn-block btn-warning' %>
           <% end %>
         </div>
       </div>
@@ -30,7 +35,7 @@
     
     <div class="col-md-6">
       <div class="well text-center signed-in-well">
-        <h2>Basic Membership</h1>
+        <h2 id ="signup-today">Basic Membership</h1>
         <h4>Sign up for free and get basic access to the community.</h4>
         <br/>
         <%= link_to "Sign up with Basic", new_user_registration_path(plan: @basic_plan.id), class: "btn btn-primary btn-lg btn-block" %>
