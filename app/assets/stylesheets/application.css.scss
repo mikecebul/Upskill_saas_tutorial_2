@@ -64,6 +64,10 @@ h1, h2, h3 {
   }
 }
 
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-top: none;
+}
+
 // Home page Styles
 .home-callout {
   color: white;
@@ -86,4 +90,7 @@ h1, h2, h3 {
 
 .home-signup-links {
   margin-top: 30px;
+}
+.well.text-center.signed-in-well {
+  padding-top: 0px;
 }
